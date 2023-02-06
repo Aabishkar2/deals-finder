@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-}
+  images: {
+    domains: ['picsum.photos', 'fastly.picsum.photos'], // <== Domain name
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
