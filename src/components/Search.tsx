@@ -104,7 +104,7 @@ export default function Search({
             <div className="mt-4 grid place-items-center content-center">
               <div className="flex flex-row justify-between space-x-2 px-4 py-2">
                 <button type="submit">
-                  <div className="search-button source-sans-pro flex space-x-2 rounded-2xl bg-pureWhite py-2 px-4 text-sm font-semibold text-lightSixty hover:bg-lightTen hover:text-white dark:text-dark dark:hover:bg-lightSixty">
+                  <div className="search-button source-sans-pro flex space-x-2 rounded-2xl bg-pureWhite py-2 px-4 text-sm font-semibold text-lightSixty hover:bg-lightTen hover:text-white dark:text-dark dark:hover:bg-lightSixty dark:hover:text-white">
                     <div className="grid place-items-center content-center">
                       <FaSearch className="text-sm" />
                     </div>
@@ -112,7 +112,7 @@ export default function Search({
                   </div>
                 </button>
                 <button type="reset" onClick={resetForm}>
-                  <div className="search-button source-sans-pro flex space-x-2 rounded-2xl bg-pureWhite py-2 px-4 text-sm font-semibold text-lightSixty hover:bg-lightTen hover:text-white dark:text-dark dark:hover:bg-lightSixty">
+                  <div className="search-button source-sans-pro flex space-x-2 rounded-2xl bg-pureWhite py-2 px-4 text-sm font-semibold text-lightSixty hover:bg-lightTen hover:text-white dark:text-dark dark:hover:bg-lightSixty dark:hover:text-white">
                     <div className="grid place-items-center content-center">
                       <BiRefresh className="text-xl" />
                     </div>
