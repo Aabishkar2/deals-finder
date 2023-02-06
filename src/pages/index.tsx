@@ -17,7 +17,6 @@ export default function Home({
   locations: LocationResponse;
 }) {
   const [allDeals, setAllDeals] = useState(deals);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [search, setSearch] = useState({
     deal: '',
@@ -46,17 +45,18 @@ export default function Home({
     });
     const deals = await res.json();
     setAllDeals(deals);
-    setLoading(false);
   };
 
   const handleResetForm = async () => {
-    setLoading(true); // set loading to true
+    setSearch({
+      deal: '',
+      location: '',
+    });
     const res = await fetch(`${config.url()}/api/deals`, {
       method: 'GET',
     });
     const deals = await res.json();
     setAllDeals(deals);
-    setLoading(false);
   };
 
   return (
