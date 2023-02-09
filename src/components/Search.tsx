@@ -2,7 +2,7 @@ import { FaSearch } from 'react-icons/fa';
 import { BiRefresh } from 'react-icons/bi';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Select, { StylesConfig } from 'react-select';
 
 export default function Search({
@@ -16,6 +16,7 @@ export default function Search({
   searchedDeal?: string;
   searchedLocation?: string;
 }) {
+  const router = useRouter();
   const customSelectStyles: StylesConfig = {
     control: provided => ({
       ...provided,
@@ -40,6 +41,8 @@ export default function Search({
     const form = e.target; // get the form
     const data = new FormData(form as HTMLFormElement); // get the form data
     const { deal, location } = Object.fromEntries(data.entries()); // get the deal and location from the form data
+    if (deal === router.query.deal && location === router.query.location)
+      return;
     // redirect to home page with the deal and location in query string
     Router.push({
       pathname: '/',
