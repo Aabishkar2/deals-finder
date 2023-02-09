@@ -7,13 +7,11 @@ import Select, { StylesConfig } from 'react-select';
 
 export default function Search({
   locations,
-  searchProductAction,
   resetFormAction,
   searchedDeal,
   searchedLocation,
 }: {
   locations: string[];
-  searchProductAction?: () => void;
   resetFormAction?: () => void;
   searchedDeal?: string;
   searchedLocation?: string;
@@ -32,7 +30,9 @@ export default function Search({
   }));
 
   const [selectedOption, setSelectedOption] = useState(
-    searchedDeal ? { value: searchedDeal, label: searchedDeal } : options[0]
+    searchedLocation
+      ? { value: searchedLocation, label: searchedLocation }
+      : options[0]
   );
 
   const handleFormSubmit = (e: React.SyntheticEvent) => {
@@ -48,7 +48,6 @@ export default function Search({
         location: location as string,
       },
     });
-    if (searchProductAction) searchProductAction();
   };
 
   const resetForm = () => {

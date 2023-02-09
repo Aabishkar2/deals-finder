@@ -18,24 +18,12 @@ export default function Home({
 }) {
   const [allDeals, setAllDeals] = useState(deals);
   const router = useRouter();
-  const [search, setSearch] = useState({
-    deal: '',
-    location: '',
-  });
+  const [searchedDeal, setSearchedDeal] = useState('');
+  const [searchedLocation, setSearchedLocation] = useState('');
 
-  useEffect(() => {
-    if (router.query.deal || router.query.location) {
-      handleSearchSubmit();
-      setSearch({
-        deal: router.query.deal as string,
-        location: router.query.location as string,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router.query.deal, router.query.location]);
-
-  const handleSearchSubmit = async () => {
-    const { deal, location } = router.query;
+  const handleSearchSubmit = async (deal: string, location: string) => {
+    setSearchedDeal(deal);
+    setSearchedLocation(location);
     const query = new URLSearchParams({
       search: deal as string,
       location: location as string,
@@ -47,11 +35,18 @@ export default function Home({
     setAllDeals(deals);
   };
 
+  const { deal, location } = router.query;
+
+  useEffect(() => {
+    if (!deal && !location) {
+      return;
+    }
+    handleSearchSubmit(deal as string, location as string);
+  }, [deal, location]);
+
   const handleResetForm = async () => {
-    setSearch({
-      deal: '',
-      location: '',
-    });
+    setSearchedDeal('');
+    setSearchedLocation('');
     const res = await fetch(`${config.url()}/api/deals`, {
       method: 'GET',
     });
@@ -70,10 +65,9 @@ export default function Home({
       <Header />
       <Search
         locations={locations.locations}
-        searchProductAction={handleSearchSubmit}
         resetFormAction={handleResetForm}
-        searchedDeal={search.deal}
-        searchedLocation={search.location}
+        searchedDeal={searchedDeal}
+        searchedLocation={searchedLocation}
       />
       <Products deals={allDeals} />
       <Footer />

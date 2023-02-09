@@ -2,7 +2,6 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Head from 'next/head';
 import ProductDetail from '@/components/ProductDetail';
-import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { Deal as DealType, LocationResponse } from '@/types';
 import config from '@/config';
